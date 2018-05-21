@@ -2,7 +2,6 @@
 
 import boto3
 import collections
-from datetime import datetime
 import calendar
 
 client = boto3.client('cloudwatch')
@@ -16,7 +15,7 @@ for r in reservations['Reservations']:
         for t in i['Tags']:
             if t['Key'] == 'Name':
                 iname = t['Value']
-                alarm_name = 'CPU Alarm ' + iname
+                alarm_name = 'CPU Alarm ' + iname + instance_id
                 alarm = client.put_metric_alarm(
                     AlarmName=alarm_name,
                     MetricName='CPUUtilization',
