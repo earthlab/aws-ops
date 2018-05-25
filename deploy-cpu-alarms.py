@@ -1,12 +1,8 @@
 # Deploy idle CPU alarms to stop EC2 instances
-
 import boto3
-import collections
-import calendar
 
 client = boto3.client('cloudwatch')
 ec = boto3.client('ec2')
-
 reservations = ec.describe_instances()
 
 for r in reservations['Reservations']:
