@@ -20,7 +20,7 @@ for r in reservations['Reservations']:
                     ComparisonOperator='LessThanOrEqualToThreshold',
                     Threshold=1.0,
                     Period=60 * 60, # in seconds
-                    EvaluationPeriods=6,
+                    EvaluationPeriods=4,
                     Dimensions=[
                         {
                             'Name': 'InstanceId',
