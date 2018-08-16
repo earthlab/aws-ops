@@ -1,6 +1,8 @@
 # Deploy idle CPU alarms to stop EC2 instances
 import boto3
 
+account_id = boto3.client('sts').get_caller_identity().get('Account')
+region = boto3.session.Session().region_name
 client = boto3.client('cloudwatch')
 ec = boto3.client('ec2')
 reservations = ec.describe_instances()
@@ -35,9 +37,13 @@ for r in reservations['Reservations']:
                         ],
                         Unit='Percent',
                         ActionsEnabled=True,
-                        AlarmActions=['arn:aws:swf:us-west-2:732215511434:action/actions/AWS_EC2.InstanceId.Stop/1.0']
+                        AlarmActions=[
+                            ":".join(
+                                ['arn:aws:swf', 
+                                region, 
+                                account_id, 
+                                'action/actions/AWS_EC2.InstanceId.Stop/1.0']
+                                )
+                            ]
                     )
-
-
-
 
