@@ -4,7 +4,7 @@ sudo: required
 dist: trusty
 
 before_install:
-  - $(go env GOPATH)/src/github.com/hashicorp && \
+  - mkdir -p $(go env GOPATH)/src/github.com/hashicorp && \
       cd $_ && \
       git clone https://github.com/hashicorp/packer.git && \
       cd packer && \
