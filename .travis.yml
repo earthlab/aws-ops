@@ -8,5 +8,6 @@ before_install:
       cd $_ && 
       git clone https://github.com/hashicorp/packer.git && 
       cd packer && 
-      make dev
+      make dev &&
+      cd $TRAVIS_BUILD_DIR
 
