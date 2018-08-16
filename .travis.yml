@@ -1,0 +1,11 @@
+language: go
+
+sudo: required
+dist: trusty
+
+before_install: 
+        - git clone https://github.com/hashicorp/packer.git
+        - cd packer && make dev
+        - packer
+
+
