@@ -15,21 +15,26 @@
             "ssh_username": "ec2-user",
             "ami_name": "{{isotime \"2006-01-02\"}}-earthlab-docker",
             "ami_description": "Amazon Linux + Docker",
-	    "ami_groups": "all"
+            "iam_instance_profile": "CloudWatchAgentServerRole"
       }
   ],
       "provisioners": [
         {
+          "type": "file",
+          "source": "packer/install-cloudwatch.sh",
+          "destination": "/home/ec2-user/"
+        },
+        {
             "type": "shell",
             "inline":[
-        	"sleep 30",
-                "sudo yum update -y",
-                "sudo yum install docker -y",
-        	"sudo service docker start",
-        	"sudo usermod -a -G docker ec2-user",
-        	"sudo systemctl enable docker"
+              "sleep 30",
+              "sudo yum update -y",
+              "sudo yum install docker -y",
+              "sudo service docker start",
+              "sudo usermod -a -G docker ec2-user",
+              "sudo systemctl enable docker",
+              "sudo bash install-cloudwatch.sh"
             ]
         }
     ]
 }
-
