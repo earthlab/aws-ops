@@ -11,7 +11,7 @@
             "secret_key": "{{user `aws_secret_key`}}",
             "region": "us-west-2",
             "source_ami": "ami-0b63040ee445728bf",
-            "instance_type": "t2.micro",
+            "instance_type": "c5.large",
             "ssh_username": "ubuntu",
             "ami_name": "{{isotime \"2006-01-02\"}}-geospatial-deeplearning",
             "ami_description": "Ubuntu deep learning + spatial Python packages",
@@ -21,16 +21,14 @@
       "provisioners": [
         {
           "type": "file",
-          "source": "packer/install-cloudwatch.sh",
+          "source": "packer/spatial_torch.yml",
           "destination": "/home/ubuntu/"
         },
         {
             "type": "shell",
             "inline":[
               "sleep 30",
-              "wget https://raw.githubusercontent.com/NateMietk/modeling-human-ignition/master/src/python/spatial_torch_env.yml",
-              "conda env create -f spatial_torch_env.yml",
-              "sudo bash install-cloudwatch.sh"
+              "conda env create -f /home/ubuntu/spatial_torch.yml"
             ]
         }
     ]
