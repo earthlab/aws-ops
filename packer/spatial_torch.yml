@@ -1,0 +1,22 @@
+name: spatial_torch
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - boto3=1.7.62=py35_1
+  - cudatoolkit=9.0=h13b8566_0
+  - gdal=2.2.2=py35h40af447_1
+  - jupyterlab
+  - libgdal=2.2.2=h6bd4d82_1
+  - ncurses=6.1=hf484d3e_0
+  - python=3.5.5=hc3d631a_4
+  - rasterio=0.36.0=py35h94a1d1c_1
+  - scikit-image=0.14.0=py35hf484d3e_1
+  - scipy=1.1.0=py35hfc37229_0
+  - cuda90=1.0=h6433d27_0
+  - pytorch=0.4.1=py35_cuda9.0.176_cudnn7.1.2_1
+  - torchvision=0.2.1=py35_1
+  - pip:
+    - torch==0.4.1
+prefix: /home/ubuntu/anaconda3/envs/spatial_torch
