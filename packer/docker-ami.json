@@ -29,7 +29,7 @@
             "inline":[
               "sleep 30",
               "sudo yum update -y",
-              "sudo yum install docker -y",
+              "sudo yum install docker git -y",
               "sudo service docker start",
               "sudo usermod -a -G docker ec2-user",
               "sudo systemctl enable docker",
