@@ -10,4 +10,4 @@ before_install:
       cd packer &&
       make dev &&
       cd $TRAVIS_BUILD_DIR
-  - pip3 install boto3
+  - pip install boto3
