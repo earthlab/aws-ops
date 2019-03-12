@@ -99,3 +99,6 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+latest_ami.txt
+2*template.json
