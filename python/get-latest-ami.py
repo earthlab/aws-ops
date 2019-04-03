@@ -1,7 +1,10 @@
-# from https://github.com/bwood/latest-ami
-import boto3
-import sys
+""" Find the image ID for the latest AMI.
 
+Adapted from https://github.com/bwood/latest-ami
+
+"""
+
+import boto3
 from dateutil import parser
 
 

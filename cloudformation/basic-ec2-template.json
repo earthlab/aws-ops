@@ -17,6 +17,14 @@
       "Default" : "t2.micro",
       "AllowedValues" : [ "t1.micro", "t2.nano", "t2.micro", "t2.small", "t2.medium", "t2.large", "m1.small", "m1.medium", "m1.large", "m1.xlarge", "m2.xlarge", "m2.2xlarge", "m2.4xlarge", "m3.medium", "m3.large", "m3.xlarge", "m3.2xlarge", "m4.large", "m4.xlarge", "m4.2xlarge", "m4.4xlarge", "m4.10xlarge", "c1.medium", "c1.xlarge", "c3.large", "c3.xlarge", "c3.2xlarge", "c3.4xlarge", "c3.8xlarge", "c4.large", "c4.xlarge", "c4.2xlarge", "c4.4xlarge", "c4.8xlarge", "g2.2xlarge", "g2.8xlarge", "r3.large", "r3.xlarge", "r3.2xlarge", "r3.4xlarge"],
       "ConstraintDescription" : "must be a valid EC2 instance type."
+    },
+
+    "VolumeSize" : {
+      "Description" : "Amount of disk space allocated to the instance in GB",
+      "Type" : "Number",
+      "Default" : "30",
+      "MaxValue" : "250",
+      "ConstraintDescription" : "must not exceed 250 GB"
     }
   },
 
@@ -25,9 +33,15 @@
       "Type" : "AWS::EC2::Instance",
       "Properties" : {
         "InstanceType" : { "Ref" : "InstanceType" },
-        "SecurityGroupIds" : ["sg-00f5e8a7a128bcfe6"],
+        "SecurityGroupIds" : ["sg-3f455045"],
         "KeyName" : { "Ref" : "KeyName" },
         "ImageId" : "{{AMIID}}",
+        "BlockDeviceMappings" : [{
+           "DeviceName" : "/dev/sda1",
+              "Ebs" : {
+                 "VolumeSize" : { "Ref" : "VolumeSize"}
+              }
+        }],
       }
     },
   },
