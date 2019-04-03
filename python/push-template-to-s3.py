@@ -1,3 +1,5 @@
+""" Push the cloudformation template to an S3 bucket. """
+
 import boto3
 import glob
 

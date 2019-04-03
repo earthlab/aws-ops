@@ -1,3 +1,5 @@
+""" Ensure that a cloudformation template is valid. """
+
 import boto3
 import glob
 
