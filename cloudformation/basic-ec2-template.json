@@ -20,7 +20,7 @@
     },
 
     "VolumeSize" : {
-      "Description" : "Amount of disk space allocated to the instance in GB",
+      "Description" : "Disk space allocated to the instance in GB (must be <= 250)",
       "Type" : "Number",
       "Default" : "30",
       "MaxValue" : "250",
@@ -44,6 +44,33 @@
         }],
       }
     },
+
+    "CPUAlarm" : {
+      "Type" : "AWS::CloudWatch::Alarm",
+      "Properties" : {
+        "AlarmDescription": { "Fn::Join" : ["", [{ "Ref" : "EC2Instance" }, " CPU Utilization"]]},
+        "MetricName": "CPUUtilization",
+        "Namespace": "AWS/EC2",
+        "Statistic": "Maximum",
+        "Period": "3600",
+        "EvaluationPeriods": "2",
+        "Threshold": "1",
+        "Unit" : "Percent",
+        "AlarmActions": [{
+          "Fn::Join" : [":", [
+            "arn:aws:swf",
+            { "Ref" : "AWS::Region" },
+            { "Ref" : "AWS::AccountId" },
+            "action/actions/AWS_EC2.InstanceId.Stop/1.0"
+            ]
+          ]
+        }],
+        "Dimensions" : [{ "Name": "InstanceId",
+                         "Value": { "Ref": "EC2Instance" } }],
+        "ComparisonOperator": "LessThanOrEqualToThreshold"
+      }
+    },
+
   },
 
   "Outputs" : {
