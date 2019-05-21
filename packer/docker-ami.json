@@ -10,7 +10,7 @@
             "access_key": "{{user `aws_access_key`}}",
             "secret_key": "{{user `aws_secret_key`}}",
             "region": "us-west-2",
-            "source_ami": "ami-a9d09ed1",
+            "source_ami": "ami-0cb72367e98845d43",
             "instance_type": "t2.micro",
             "ssh_username": "ec2-user",
             "ami_name": "{{isotime \"2006-01-02\"}}-earthlab-docker",

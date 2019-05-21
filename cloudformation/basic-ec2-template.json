@@ -1,7 +1,7 @@
 {
   "AWSTemplateFormatVersion" : "2010-09-09",
 
-  "Description" : "AWS CloudFormation Sample Template EC2InstanceWithSecurityGroupSample: Create an Amazon EC2 instance running the Amazon Linux AMI. The AMI is chosen based on the region in which the stack is run. This example creates an EC2 security group for the instance to give you SSH access. **WARNING** This template creates an Amazon EC2 instance. You will be billed for the AWS resources used if you create a stack from this template.",
+  "Description" : "AWS CloudFormation Template.",
 
   "Parameters" : {
     "KeyName": {
@@ -37,39 +37,14 @@
         "KeyName" : { "Ref" : "KeyName" },
         "ImageId" : "{{AMIID}}",
         "BlockDeviceMappings" : [{
-           "DeviceName" : "/dev/sda1",
-              "Ebs" : {
-                 "VolumeSize" : { "Ref" : "VolumeSize"}
-              }
+           "DeviceName" : "/dev/xvda",
+           "Ebs" : {
+             "DeleteOnTermination": "true",
+             "VolumeSize" : { "Ref" : "VolumeSize"}
+           }
         }],
       }
-    },
-
-    "CPUAlarm" : {
-      "Type" : "AWS::CloudWatch::Alarm",
-      "Properties" : {
-        "AlarmDescription": { "Fn::Join" : ["", [{ "Ref" : "EC2Instance" }, " CPU Utilization"]]},
-        "MetricName": "CPUUtilization",
-        "Namespace": "AWS/EC2",
-        "Statistic": "Maximum",
-        "Period": "3600",
-        "EvaluationPeriods": "2",
-        "Threshold": "1",
-        "Unit" : "Percent",
-        "AlarmActions": [{
-          "Fn::Join" : [":", [
-            "arn:aws:swf",
-            { "Ref" : "AWS::Region" },
-            { "Ref" : "AWS::AccountId" },
-            "action/actions/AWS_EC2.InstanceId.Stop/1.0"
-            ]
-          ]
-        }],
-        "Dimensions" : [{ "Name": "InstanceId",
-                         "Value": { "Ref": "EC2Instance" } }],
-        "ComparisonOperator": "LessThanOrEqualToThreshold"
-      }
-    },
+    }
 
   },
 
