@@ -5,12 +5,6 @@ dist: bionic
 go: master
 
 before_install:
-  - mkdir -p $(go env GOPATH)/src/github.com/hashicorp &&
-      cd $_ &&
-      git clone https://github.com/hashicorp/packer.git &&
-      cd packer &&
-      make dev &&
-      cd $TRAVIS_BUILD_DIR
   - sudo apt-get update
   - sudo apt-get install python3-pip
   - pip3 install awscli boto3 --user
