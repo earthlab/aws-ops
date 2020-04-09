@@ -1,7 +1,7 @@
 language: go
 
 sudo: required
-dist: trusty
+dist: bionic
 
 before_install:
   - mkdir -p $(go env GOPATH)/src/github.com/hashicorp &&
