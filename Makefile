@@ -1,4 +1,4 @@
-all: update-servicecatalog spatial-dl-ami
+all: update-servicecatalog
 
 update-servicecatalog: ec2-cloudformation
 	python3 python/place-template-in-service-catalog.py
