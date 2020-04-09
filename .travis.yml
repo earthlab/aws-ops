@@ -2,7 +2,6 @@ language: go
 
 sudo: required
 dist: bionic
-go: master
 
 before_install:
   - sudo apt-get update
