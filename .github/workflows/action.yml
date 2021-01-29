@@ -1,0 +1,9 @@
+steps:
+- uses: actions/checkout@v2
+- uses: actions/setup-go@v2
+- run: go version
+- run: sudo apt-get update
+- run: sudo apt-get install python3-pip python3-setuptools
+- run: pip3 install awscli boto3 --user
+- run: make
+
